@@ -14,27 +14,6 @@
 
 ---
 
-# 1. Data Collection & Archive Creation
-
-## Investigation Task
-
-The objective was to identify:
-
-* what sensitive data was targeted,
-* where the data originated from,
-* and how the attacker packaged the data before exfiltration.
-
-The investigation focused on identifying archive creation activity and Living Off The Land compression techniques.
-
-## What I Looked For
-
-* PowerShell archive creation
-* ZIP/RAR/7z activity
-* Compression-related command lines
-* Staging directories
-* Built-in Windows compression utilities
-
----
 
 # 2. Exfiltration Tool Discovery
 
@@ -178,7 +157,26 @@ The objective was to correlate:
 ---
 
 
-# 2. Data Collection & Archive Creation
+# 1. Data Collection & Archive Creation
+
+## Investigation Task
+
+The objective was to identify:
+
+* what sensitive data was targeted,
+* where the data originated from,
+* and how the attacker packaged the data before exfiltration.
+
+The investigation focused on identifying archive creation activity and Living Off The Land compression techniques.
+
+## What I Looked For
+
+* PowerShell archive creation
+* ZIP/RAR/7z activity
+* Compression-related command lines
+* Staging directories
+* Built-in Windows compression utilities
+*
 
 ## Query Used
 
