@@ -10,6 +10,173 @@
 | Custom Log Table     | EmberForgeX_CL                              |
 
 ---
+# Additional Sections – Investigation Objective & Hunt Tasks
+
+---
+
+# 1. Data Collection & Archive Creation
+
+## Investigation Task
+
+The objective was to identify:
+
+* what sensitive data was targeted,
+* where the data originated from,
+* and how the attacker packaged the data before exfiltration.
+
+The investigation focused on identifying archive creation activity and Living Off The Land compression techniques.
+
+## What I Looked For
+
+* PowerShell archive creation
+* ZIP/RAR/7z activity
+* Compression-related command lines
+* Staging directories
+* Built-in Windows compression utilities
+
+---
+
+# 2. Exfiltration Tool Discovery
+
+## Investigation Task
+
+The objective was to determine:
+
+* what tool was used to exfiltrate the stolen data,
+* whether the tool was legitimate software,
+* and how the attacker transferred files externally.
+
+## What I Looked For
+
+* Cloud synchronization utilities
+* File transfer tools
+* External upload commands
+* Repeated tool execution attempts
+* Suspicious command-line arguments
+
+---
+
+# 3. Attacker Email Attribution
+
+## Investigation Task
+
+The objective was to identify:
+
+* attacker-controlled cloud credentials,
+* exposed authentication details,
+* and attribution indicators left in command-line activity.
+
+## What I Looked For
+
+* rclone configuration activity
+* Credential-related command lines
+* Usernames and email addresses
+* Configuration file creation activity
+* Authentication parameters
+
+---
+
+# 4. Plaintext Credential Exposure
+
+## Investigation Task
+
+The objective was to determine whether:
+
+* credentials were exposed in plaintext,
+* command-line arguments leaked sensitive information,
+* and operational security mistakes could aid attribution.
+
+## What I Looked For
+
+* Password arguments
+* Authentication flags
+* Inline credentials
+* Failed execution attempts
+* Insecure command-line usage
+
+---
+
+# 5. Exfiltration Destination IP
+
+## Investigation Task
+
+The objective was to correlate:
+
+* the exfiltration process,
+* outbound network activity,
+* and the external IP address receiving stolen data.
+
+## What I Looked For
+
+* Sysmon network connection events
+* Event ID 3 telemetry
+* Process-to-network correlation
+* Outbound connections from rclone.exe
+* External destination IPs
+
+---
+
+# 6. Active Directory Credential Database Theft
+
+## Investigation Task
+
+The objective was to determine whether:
+
+* the attacker accessed Domain Controller credential stores,
+* volume shadow copy techniques were used,
+* and Active Directory compromise occurred.
+
+## What I Looked For
+
+* NTDS references
+* Shadow copy usage
+* vssadmin activity
+* Credential dumping indicators
+* File copy operations involving ntds.dit
+
+---
+
+# 7. Staging Infrastructure Discovery
+
+## Investigation Task
+
+The objective was to identify:
+
+* attacker-controlled infrastructure,
+* how tools entered the environment,
+* and whether the same external server was reused across hosts.
+
+## What I Looked For
+
+* Download utilities
+* LOLBins used for tool transfer
+* External URLs
+* certutil activity
+* PowerShell web requests
+* Repeated external infrastructure references
+
+---
+
+# 8. DNS Infrastructure Correlation
+
+## Investigation Task
+
+The objective was to correlate:
+
+* suspicious DNS activity,
+* repeated external domains,
+* and infrastructure linked to attacker operations.
+
+## What I Looked For
+
+* Sysmon DNS query events
+* Event ID 22 telemetry
+* External domains
+* Repeated hostname lookups
+* Non-corporate infrastructure
+
+---
+
 
 # 2. Data Collection & Archive Creation
 
