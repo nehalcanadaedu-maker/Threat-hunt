@@ -11,29 +11,6 @@
 
 ---
 
-# 1. Custom Log Table Identification
-
-## Query Used
-
-```kql
-search *
-| summarize count() by $table
-```
-
-## Findings
-
-* Identified custom investigation table:
-
-```text
-EmberForgeX_CL
-```
-
-### Screenshot
-
-(Add screenshot here)
-
----
-
 # 2. Data Collection & Archive Creation
 
 ## Query Used
@@ -48,7 +25,8 @@ EmberForgeX_CL
 
 ### Screenshot
 
-<img width="566" height="181" alt="image" src="https://github.com/user-attachments/assets/c6154893-fc2d-4ac4-a439-aff11771ee81" />
+<img width="908" height="304" alt="image" src="https://github.com/user-attachments/assets/b06ef146-9644-4c2b-9db0-c323ec49fc93" />
+
 
 ---
 
