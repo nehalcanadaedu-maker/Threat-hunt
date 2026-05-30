@@ -96,7 +96,8 @@ EmberForgeX_CL
 
 ### Screenshot
 
-<img width="854" height="268" alt="image" src="https://github.com/user-attachments/assets/1f0bca93-d1b6-4944-8554-a0d25c3c247c" />
+<img width="1013" height="318" alt="image" src="https://github.com/user-attachments/assets/4d1983e4-cbc7-4d90-be70-a5cddeef87ed" />
+
 
 
 ---
@@ -251,8 +252,7 @@ copy \\?\GLOBALROOT\Device\HarddiskVolumeShadowCopy1\Windows\NTDS\ntds.dit C:\Wi
 | Credential Database | ntds.dit |
 
 ### Screenshot
-
-(Add screenshot here)
+<img width="862" height="288" alt="image" src="https://github.com/user-attachments/assets/4d5653e4-5ac3-45b7-b8b6-8205523666ff" />
 
 ---
 
