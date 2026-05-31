@@ -87,18 +87,20 @@ EmberForgeX_CL
 | where CommandLine_s has "gamedev.zip"
 | project TimeGenerated, Computer, Caller_User_Name_s, CommandLine_s
 | order by TimeGenerated asc
+```
 
 | Artifact         | Value       |
 | ---------------- | ----------- |
 | Cloud Provider   | MEGA        |
 | Uploaded Archive | gamedev.zip |
 
-
+### Screenshot
 <img width="1000" height="315" alt="image" src="https://github.com/user-attachments/assets/19e0639e-25cd-4f62-9d19-b3628e2e0aca" />
 
 ---
 
-**# 3. Attacker Email Attribution - jwilson.vhr@proton.me**
+
+# 3. Attacker Email Attribution - jwilson.vhr@proton.me
 
 
 ## Investigation Task
