@@ -44,6 +44,9 @@ This was not just a workstation compromise. Evidence on the Domain Controller sh
 
 **Format:** `filename.ext`
 
+<img width="1031" height="331" alt="4" src="https://github.com/user-attachments/assets/90feb888-ea33-4f58-ab14-07e933c80e84" />
+
+
 ---
 
 # Q05 - Exfil Tool
