@@ -1,6 +1,4 @@
-# Threat Hunt Report – EmberForge Source Leak Investigation
-
-Active Directory Attack Investigation
+# Threat Hunt Report – EmberForge Source Leak Investigation (Active Directory Attack Investigation)
 
 Investigation Overview
 
