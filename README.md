@@ -1,19 +1,10 @@
 # Threat Hunt Report – EmberForge Source Leak Investigation
 
-A threat hunting investigation was conducted within Microsoft Sentinel after suspicious activity was identified in the EmberForge environment. The investigation revealed successful data collection, archive staging, cloud-based exfiltration using rclone, attacker credential exposure, and Active Directory credential database theft via NTDS access.
+Active Directory Attack Investigation
 
-The attacker leveraged Living Off The Land (LOTL) techniques and legitimate administrative utilities including PowerShell and certutil to evade detection while transferring sensitive company data externally.
+Investigation Overview
 
-The investigation confirmed:
-
-* successful data exfiltration,
-* attacker-controlled staging infrastructure,
-* exposed attacker credentials,
-* and evidence of potential full domain compromise.
-
----
-
-# Threat Hunt Report – EmberForge Source Leak Investigation
+This threat hunt investigation was conducted within a Microsoft Sentinel environment following reports of unauthorized activity within the EmberForge Studios environment.
 
 # Environment Details
 
