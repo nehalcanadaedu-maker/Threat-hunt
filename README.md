@@ -1,3 +1,110 @@
+
+# Q01 - Target Directory
+
+**Points:** 50  
+**Category:** impact-assessment collection  
+
+CISO:  
+> "I have a board meeting in 4 hours. Before I care about how they got in, I need to know what they took and where it went. Legal needs the scope for breach notification."
+
+The attacker needed to package data before stealing it. The compression commands reveal exactly what they were targeting. What directory was the source of the stolen data?
+
+**Format:** Full path (e.g., `C:\folder\subfolder`)
+
+---
+
+# Q02 - Exfil Destination
+
+**Points:** 50  
+**Category:** impact-assessment exfiltration  
+
+The stolen data was uploaded to a cloud storage service. The exfiltration tool's command line contains both the service name and authentication details. What cloud provider received the data?
+
+**Format:** Provider name
+
+---
+
+# Q03 - Attacker Attribution
+
+**Points:** 75  
+**Category:** impact-assessment attribution  
+
+Attackers make OPSEC mistakes. The exfiltration tool was configured with credentials visible in the command line. What email account was used to authenticate to the cloud service?
+
+**Format:** `email@domain.tld`
+
+---
+
+# Q04 - Domain Compromise Evidence
+
+**Points:** 100  
+**Category:** impact-assessment credential-access  
+
+This was not just a workstation compromise. Evidence on the Domain Controller shows the attacker used volume snapshot techniques to access a locked system file. This file contains every credential in the domain. What was it?
+
+**Format:** `filename.ext`
+
+---
+
+# Q05 - Exfil Tool
+
+**Points:** 75  
+**Category:** exfiltration tools  
+
+CISO:  
+> "I need to understand the exfiltration path. What tools did they use? Where did they stage from? Can we confirm this was the only way data left the network?"
+
+Data does not always leave from the machine it was found on. Check all hosts.
+
+A cloud synchronisation tool was used to upload data externally. This tool is legitimate software commonly abused by threat actors. It was executed multiple times, not all successfully.
+
+**Format:** `filename.exe`
+
+---
+
+# Q06 - Exfil Destination IP
+
+**Points:** 100  
+**Category:** exfiltration network  
+
+The exfiltration tool made outbound network connections during the upload. Correlate the tool's process with its network activity (EventCode 3). What IP address received the stolen data?
+
+**Format:** IP address
+
+---
+
+# Q07 - Attacker Credential Exposure
+
+**Points:** 100  
+**Category:** exfiltration credential-exposure  
+
+The exfiltration tool was executed multiple times as the attacker troubleshot authentication issues. One execution method exposed credentials far more recklessly than the others. Compare all executions and find the plaintext password.
+
+**Format:** Plaintext password
+
+---
+
+# Q08 - Archive Method
+
+**Points:** 75  
+**Category:** collection living-off-the-land  
+
+Before exfiltration, the stolen data was compressed into an archive. The attacker used a built-in OS capability rather than third-party tools. This is a Living Off The Land technique. What cmdlet created the archive?
+
+**Format:** PowerShell cmdlet name
+
+---
+
+# Q09 - Staging Server
+
+**Points:** 100  
+**Category:** infrastructure tool-transfer  
+
+The attacker did not bring tools manually. They downloaded utilities from external infrastructure they controlled. Multiple commands across the environment reference the same staging server.
+
+**Format:** `subdomain.domain.tld`
+
+
 # Threat Hunt Report – EmberForge Source Leak Investigation
 
 A threat hunting investigation was conducted within Microsoft Sentinel after suspicious activity was identified in the EmberForge environment. The investigation revealed successful data collection, archive staging, cloud-based exfiltration using rclone, attacker credential exposure, and Active Directory credential database theft via NTDS access.
