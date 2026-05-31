@@ -161,7 +161,8 @@ EmberForgeX_CL
 
 
 ### Screenshot
-<img width="862" height="288" alt="image" src="https://github.com/user-attachments/assets/4d5653e4-5ac3-45b7-b8b6-8205523666ff" />
+<img width="1031" height="331" alt="image" src="https://github.com/user-attachments/assets/9cdad307-888b-4d68-9e8b-2fc03438a868" />
+
 
 ---
 
