@@ -316,6 +316,7 @@ EmberForgeX_CL
 | where CommandLine_s has_any ("zip", "rar", "7z", "tar", "archive", "compress")
 | project TimeGenerated, Computer, Caller_User_Name_s, CommandLine_s
 | order by TimeGenerated asc
+```
 
 The cmdlet is:
 
