@@ -98,7 +98,7 @@ EmberForgeX_CL
 
 ---
 
-# 3. Attacker Email Attribution - jwilson.vhr@proton.me
+**# 3. Attacker Email Attribution - jwilson.vhr@proton.me**
 
 
 ## Investigation Task
