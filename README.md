@@ -1,4 +1,4 @@
-# Threat Hunt Report – EmberForge Source Leak Investigation (Active Directory Attack Investigation)
+# EmberForge Source Leak Investigation (Active Directory Attack Investigation)
 
 This threat hunt investigation was conducted within a Microsoft Sentinel environment following reports of unauthorized activity within the EmberForge Studios environment.
 
