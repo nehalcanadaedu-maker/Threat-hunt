@@ -1,35 +1,3 @@
-
-
-
----
-
-
-
----
-
-
-
----
-
-
-
----
-
-
-
----
-
-
-
----
-
-
-
----
-
-
-
-
 # Threat Hunt Report – EmberForge Source Leak Investigation
 
 A threat hunting investigation was conducted within Microsoft Sentinel after suspicious activity was identified in the EmberForge environment. The investigation revealed successful data collection, archive staging, cloud-based exfiltration using rclone, attacker credential exposure, and Active Directory credential database theft via NTDS access.
@@ -141,6 +109,16 @@ EmberForgeX_CL
 This was not just a workstation compromise. Evidence on the Domain Controller shows the attacker used volume snapshot techniques to access a locked system file. This file contains every credential in the domain. What was it?
 
 **Format:** `filename.ext`
+
+## Query Used
+
+```kql id="fwm0m7"
+EmberForgeX_CL
+| where CommandLine_s has_any ("vssadmin", "shadow", "ntds", "diskshadow", "copy")
+| project TimeGenerated, Computer, Caller_User_Name_s, CommandLine_s
+| order by TimeGenerated asc
+```
+
 
 <img width="1031" height="331" alt="4" src="https://github.com/user-attachments/assets/90feb888-ea33-4f58-ab14-07e933c80e84" />
 
@@ -284,51 +262,6 @@ EmberForgeX_CL
 
 ---
 
-# Attack Timeline
-
-| Stage                    | Activity                                                    |
-| ------------------------ | ----------------------------------------------------------- |
-| Tool Transfer            | certutil downloaded update.exe from attacker infrastructure |
-| Data Collection          | Sensitive data gathered from C:\GameDev                     |
-| Archive Creation         | Compress-Archive created gamedev.zip                        |
-| Exfiltration Preparation | rclone configured with MEGA credentials                     |
-| Credential Exposure      | Plaintext MEGA password exposed in command line             |
-| Exfiltration             | gamedev.zip uploaded to MEGA                                |
-| Domain Compromise        | NTDS database copied via Volume Shadow Copy                 |
-
----
-
-# Indicators of Compromise (IOCs)
-
-
-| Question                                      | Answer                    |
-| --------------------------------------------- | ------------------------- |
-| 1. Stolen Data Source Directory               | `C:\GameDev`              |
-| 2. Exfiltration Destination                   | `MEGA`                    |
-| 3. Attacker Email Attribution                 | `jwilson.vhr@proton.me`   |
-| 4. Active Directory Credential Database Theft | `ntds.dit`                |
-| 5. Exfiltration Destination IP                | `66.203.125.15`           |
-| 6. Plaintext Credential Exposure              | `Summer2024!`             |
-| 7. Archive Method                             | `Compress-Archive`        |
-| 8. Staging Infrastructure Discovery           | `sync.cloud-endpoint.net` |
 
 
 
----
-
-# MITRE ATT&CK Techniques Observed
-
-| Question                                      | Technique                     | ID        |
-| --------------------------------------------- | ----------------------------- | --------- |
-| 1. Stolen Data Source Directory               | Data from Local System        | T1005     |
-| 2. Exfiltration Destination                   | Exfiltration to Cloud Storage | T1567.002 |
-| 3. Attacker Email Attribution                 | Unsecured Credentials         | T1552     |
-| 4. Active Directory Credential Database Theft | NTDS Credential Dumping       | T1003.003 |
-| 5. Exfiltration Destination IP                | Exfiltration to Cloud Storage | T1567.002 |
-| 6. Plaintext Credential Exposure              | Unsecured Credentials         | T1552     |
-| 7. Archive Method                             | Archive via Utility           | T1560.001 |
-| 8. Staging Infrastructure Discovery           | Ingress Tool Transfer         | T1105     |
-
-
-
----
