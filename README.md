@@ -242,7 +242,7 @@ EmberForgeX_CL
 
 ---
 
-# 7. Archive Method - `Compress-Archive` |
+# 7. Archive Method - Compress-Archive
 
 ## Investigation Task
 
