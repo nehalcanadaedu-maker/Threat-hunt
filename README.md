@@ -89,7 +89,7 @@ EmberForgeX_CL
 | order by TimeGenerated asc
 ```
 
-|
+
 ### Screenshot
 <img width="1000" height="315" alt="image" src="https://github.com/user-attachments/assets/19e0639e-25cd-4f62-9d19-b3628e2e0aca" />
 
